@@ -1,6 +1,6 @@
 package org.acme.rest.client;
 
-public class Person {
+public class Employee {
 
     public int id;
     public String name;
@@ -9,7 +9,7 @@ public class Person {
     public String occupation;
 
 
-    public Person(int id, String name, String surname) {
+    public Employee(int id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname; 
