@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @ApplicationScoped
-@Path("/init")
+@Path("/employees")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class GreetingResource {
@@ -21,9 +21,10 @@ public class GreetingResource {
     private EmployeeService employeeService;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "hello, this is begin with Quarkus!!!";
+    @Produces("application/json")
+    public Response getEmployee(){
+        List<Employee> prod = employeeService.getEmployee();
+        return Response.ok(prod).build();
     }
 
     @POST
@@ -34,11 +35,5 @@ public class GreetingResource {
         return Response.ok().build();
     }
 
-    @GET
-    @Path("/employees")
-    @Produces("application/json")
-    public Response getEmployee(){
-        List<Employee> prod = employeeService.getEmployee();
-        return Response.ok(prod).build();
-    }
+    
 }
