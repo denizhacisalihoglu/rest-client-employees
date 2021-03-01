@@ -43,11 +43,11 @@ public class Employee {
     }
 
     private static Employee from(Row row) {
-        return new Employee(row.getLong("id"), row.getString("name"));
+        return new Employee(row.getLong("Id"), row.getString("FirstName"));
     }
 
     public static Multi<Employee> findAll(PgPool client) {
-        return client.query("SELECT id, name FROM fruits ORDER BY name ASC").execute()
+        return client.query("select * from public.\"Employees\"").execute()
                 .onItem().transformToMulti(set -> Multi.createFrom().iterable(set))
                 .onItem().transform(Employee::from);
     }
