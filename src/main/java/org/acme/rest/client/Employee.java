@@ -1,5 +1,9 @@
 package org.acme.rest.client;
 
+import io.smallrye.mutiny.Multi;
+import io.vertx.mutiny.pgclient.PgPool;
+import io.vertx.mutiny.sqlclient.Row;
+
 public class Employee {
 
     public int id;
@@ -15,7 +19,10 @@ public class Employee {
         this.surname = surname; 
     }
     
-    public int getId(){
+    public Employee(Long long1, String string) {
+	}
+
+	public int getId(){
         return this.id;
     }
 
@@ -34,5 +41,16 @@ public class Employee {
     public String getOccupation(){
         return this.occupation;
     }
+
+    private static Employee from(Row row) {
+        return new Employee(row.getLong("id"), row.getString("name"));
+    }
+
+    public static Multi<Employee> findAll(PgPool client) {
+        return client.query("SELECT id, name FROM fruits ORDER BY name ASC").execute()
+                .onItem().transformToMulti(set -> Multi.createFrom().iterable(set))
+                .onItem().transform(Employee::from);
+    }
+
     
 }

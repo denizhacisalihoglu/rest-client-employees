@@ -7,18 +7,18 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.legacy-jar -t quarkus/rest-client-people-legacy-jar .
+# docker build -f src/main/docker/Dockerfile.legacy-jar -t quarkus/rest-client-employees-legacy-jar .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/rest-client-people-legacy-jar
+# docker run -i --rm -p 8080:8080 quarkus/rest-client-employees-legacy-jar
 #
 # If you want to include the debug port into your docker image
 # you will have to expose the debug port (default 5005) like this :  EXPOSE 8080 5050
 #
 # Then run the container using :
 #
-# docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/rest-client-people-legacy-jar
+# docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/rest-client-employees-legacy-jar
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3 
