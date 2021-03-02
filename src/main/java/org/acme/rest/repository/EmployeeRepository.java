@@ -14,5 +14,9 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
         return found;
     }
 
+    public void delete(Long id) {
+        delete("id", id);
+    }
+
 
 }

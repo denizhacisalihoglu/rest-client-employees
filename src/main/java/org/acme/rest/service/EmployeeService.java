@@ -5,6 +5,8 @@ import org.acme.rest.entity.Employee;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @ApplicationScoped
@@ -26,6 +28,10 @@ public class EmployeeService {
         return employeeRepository.find(id);
     }
 
-    
+    public void deleteById(Long id) {
+        employeeRepository.delete(id);
+    }
+
+
     
 }

@@ -6,6 +6,7 @@ import org.acme.rest.service.EmployeeService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -45,6 +46,13 @@ public class EmployeeController {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
 
         return p;
+    }
+
+    @Transactional
+    @DELETE
+    @Path("/{id}")
+    public void delete(@PathParam("id") Long id) {
+        employeeService.deleteById(id);
     }
 
     
