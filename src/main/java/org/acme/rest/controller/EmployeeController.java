@@ -40,7 +40,6 @@ public class EmployeeController {
     @Path("/{id}")
     public List<Employee> findById(@PathParam("id") Long id) {
         List<Employee> p = employeeService.findById(id);
-        System.out.println(p.size());
 
         if(p.size() == 0)
             throw new WebApplicationException(Response.Status.NOT_FOUND);

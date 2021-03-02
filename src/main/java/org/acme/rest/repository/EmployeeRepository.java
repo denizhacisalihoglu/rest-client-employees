@@ -11,7 +11,6 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
 
     public List<Employee> find(Long id) {
         List<Employee> found = find("id", id).list();
-        System.out.println(found);
         return found;
     }
 
