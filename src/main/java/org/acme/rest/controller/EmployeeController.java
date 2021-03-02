@@ -55,5 +55,11 @@ public class EmployeeController {
         employeeService.deleteById(id);
     }
 
-    
+    @GET
+    @Path("/email/{email}")
+    public Employee get(@PathParam("email") @Encoded String email) {
+        return employeeService.findByEmail(email);
+    }
+
+
 }

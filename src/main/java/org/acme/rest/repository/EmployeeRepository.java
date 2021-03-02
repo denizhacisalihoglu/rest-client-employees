@@ -14,6 +14,16 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
         return found;
     }
 
+    public Employee findByEmail(String email) {
+        Employee found = find("email", email).firstResult();
+        return found;
+    }
+
+    public List<Employee> findByFirstName(String firstName) {
+        List<Employee> found = find(firstName).list();
+        return found;
+    }
+
     public void delete(Long id) {
         delete("id", id);
     }
