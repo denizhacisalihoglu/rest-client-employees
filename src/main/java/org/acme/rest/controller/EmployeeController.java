@@ -10,12 +10,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import javax.ws.rs.WebApplicationException;
 
 @ApplicationScoped
 @Path("/employees")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class GreetingResource {
+public class EmployeeController {
 
     @Inject
     private EmployeeService employeeService;
@@ -28,11 +29,23 @@ public class GreetingResource {
     }
 
     @POST
-    @Path("/add/employees")
+    @Path("/add")
     @Produces("application/json")
     public Response addEmployee(Employee employee){
         employeeService.addEmployee(employee);
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/{id}")
+    public List<Employee> findById(@PathParam("id") Long id) {
+        List<Employee> p = employeeService.findById(id);
+        System.out.println(p.size());
+
+        if(p.size() == 0)
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+
+        return p;
     }
 
     

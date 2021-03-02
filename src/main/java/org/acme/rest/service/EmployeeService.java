@@ -22,4 +22,10 @@ public class EmployeeService {
         employeeRepository.persist(employee);
     }
 
+    public List<Employee> findById(Long id) {
+        return employeeRepository.find(id);
+    }
+
+    
+    
 }

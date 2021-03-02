@@ -1,11 +1,7 @@
 package org.acme.rest.entity;
-
-
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import javax.persistence.*;
-
 import static javax.persistence.GenerationType.SEQUENCE;
-
 import java.sql.Date;
 
 @Entity

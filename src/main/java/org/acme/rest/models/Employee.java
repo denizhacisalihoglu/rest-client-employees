@@ -1,8 +1,8 @@
-package org.acme.rest.dto;
+package org.acme.rest.models;
 
 import java.sql.Date;
 
-public class EmployeeDto {
+public class Employee {
 
     private String firstName;
     private String lastName;
@@ -10,10 +10,10 @@ public class EmployeeDto {
     private Date dateOfBirth;
     private String jobTitle;
 
-    public EmployeeDto() {
+    public Employee() {
     }
 
-    public EmployeeDto(String firstName, String lastName, String email, Date dateOfBirth, String jobTitle) {
+    public Employee(String firstName, String lastName, String email, Date dateOfBirth, String jobTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -21,18 +21,23 @@ public class EmployeeDto {
         this.jobTitle = jobTitle;
     }
 
-    public String getName() {
+    public String getFirstName() {
         return firstName;
     }
+    public void setFirstName(String lastName) {
+        this.firstName = firstName;
+    }
 
-    public void setName(String lastName) {
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -40,9 +45,11 @@ public class EmployeeDto {
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
-
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    public String getJobTitle() { return jobTitle; }
+    public void setJobTitle(String jobTitle) { this.jobTitle =  jobTitle; }
 
 }
