@@ -2,7 +2,6 @@ package org.acme.rest.entity;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -10,14 +9,13 @@ import static javax.persistence.GenerationType.SEQUENCE;
 import java.sql.Date;
 
 @Entity
-@Table(name="public.\"Employees\"")
+@Table(name= "employees", schema = "public")
 public class Employee extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = SEQUENCE, generator = "SEQ_PROD")
-    @SequenceGenerator(name="SEQ_PROD", sequenceName = "SEQ_PROD", allocationSize = 1)
-    
-    @Column(name = "id")
+    @GeneratedValue(generator = "id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="id_seq", sequenceName = "public.employees_Id_seq", allocationSize = 1, schema = "public")
+    @Column(name="id", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "firstname")
