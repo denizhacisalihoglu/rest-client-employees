@@ -36,6 +36,9 @@ public class EmployeeService {
         employeeRepository.delete(id);
     }
 
+    public List<Employee> findByJobTitle(String jobTitle) {
+        System.out.println("jobTitle");
+        return employeeRepository.findByJobTitle(jobTitle);
+    }
 
-    
 }

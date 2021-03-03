@@ -60,5 +60,11 @@ public class EmployeeController {
         return employeeService.findByEmail(email);
     }
 
+    @GET
+    @Path("/jobtitle/{jobtitle}")
+    public List<Employee> findByJobTitle(@PathParam("jobtitle") @Encoded String jobtitle) {
+        return employeeService.findByJobTitle(jobtitle);
+    }
+
 
 }

@@ -27,5 +27,8 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
         delete("id", id);
     }
 
+    public List<Employee> findByJobTitle(String jobTitle) {
+        return find("jobtitle", jobTitle).list();
+    }
 
 }
