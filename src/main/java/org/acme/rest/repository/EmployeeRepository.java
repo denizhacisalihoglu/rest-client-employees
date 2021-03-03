@@ -15,8 +15,7 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
     }
 
     public Employee findByEmail(String email) {
-        Employee found = find("email", email).firstResult();
-        return found;
+        return find("email", email).firstResult();
     }
 
     public List<Employee> findByFirstName(String firstName) {
