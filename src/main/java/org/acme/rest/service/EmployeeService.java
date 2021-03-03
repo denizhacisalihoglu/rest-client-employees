@@ -13,7 +13,7 @@ import java.util.List;
 public class EmployeeService {
 
     @Inject
-    private EmployeeRepository employeeRepository;
+    EmployeeRepository employeeRepository;
 
     public List<Employee> getEmployee(){
         return employeeRepository.listAll();

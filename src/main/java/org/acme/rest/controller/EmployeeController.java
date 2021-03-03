@@ -20,7 +20,7 @@ import javax.ws.rs.WebApplicationException;
 public class EmployeeController {
 
     @Inject
-    private EmployeeService employeeService;
+    EmployeeService employeeService;
 
     @GET
     @Produces("application/json")
