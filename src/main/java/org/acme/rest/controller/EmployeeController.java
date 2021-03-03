@@ -30,7 +30,6 @@ public class EmployeeController {
     }
 
     @POST
-    @Path("/add")
     @Produces("application/json")
     public Response addEmployee(Employee employee){
         employeeService.addEmployee(employee);
