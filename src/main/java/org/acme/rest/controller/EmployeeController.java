@@ -65,4 +65,12 @@ public class EmployeeController {
         return employeeService.findByJobTitle(jobtitle);
     }
 
+    @Transactional
+    @PUT
+    @Path("/{id}")
+    @Produces("application/json")
+    public Employee updateEmployeeEmail(@PathParam("id") Long id, Employee employee){
+        return employeeService.updateEmployee(employee);
+    }
+
 }

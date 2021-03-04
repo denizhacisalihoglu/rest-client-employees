@@ -42,4 +42,9 @@ public class EmployeeService {
         return employeeRepository.findByJobTitle(jobTitle);
     }
 
+    @Transactional
+    public Employee updateEmployee(Employee employee){
+        employeeRepository.persist(employee);
+        return employee;
+    }
 }
