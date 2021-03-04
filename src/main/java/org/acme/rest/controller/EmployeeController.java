@@ -11,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Optional;
 import javax.ws.rs.WebApplicationException;
 
 @ApplicationScoped
@@ -38,13 +39,9 @@ public class EmployeeController {
 
     @GET
     @Path("/{id}")
-    public List<Employee> findById(@PathParam("id") Long id) {
-        List<Employee> p = employeeService.findById(id);
-
-        if(p.size() == 0)
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-
-        return p;
+    public Employee findById(@PathParam("id") Long id) {
+        Optional<Employee> optional = Employee.findByIdOptional(id);
+        return optional.orElseThrow(() -> new WebApplicationException(Response.Status.NOT_FOUND));
     }
 
     @Transactional
@@ -65,6 +62,5 @@ public class EmployeeController {
     public List<Employee> findByJobTitle(@PathParam("jobtitle") @Encoded String jobtitle) {
         return employeeService.findByJobTitle(jobtitle);
     }
-
 
 }

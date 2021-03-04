@@ -9,9 +9,8 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class EmployeeRepository implements PanacheRepository<Employee> {
 
-    public List<Employee> find(Long id) {
-        List<Employee> found = find("id", id).list();
-        return found;
+    public Employee find(Long id) {
+        return find("id", id).singleResult();
     }
 
     public Employee findByEmail(String email) {
