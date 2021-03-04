@@ -1,4 +1,5 @@
 package org.acme.rest.service;
+import io.quarkus.panache.common.Sort;
 import org.acme.rest.repository.EmployeeRepository;
 import org.acme.rest.entity.Employee;
 
@@ -16,7 +17,7 @@ public class EmployeeService {
     EmployeeRepository employeeRepository;
 
     public List<Employee> getEmployee(){
-        return employeeRepository.listAll();
+        return employeeRepository.listAll(Sort.by("firstName"));
     }
 
     @Transactional
