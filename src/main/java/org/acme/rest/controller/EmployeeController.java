@@ -46,9 +46,11 @@ public class EmployeeController {
 
     @Transactional
     @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
-    public void delete(@PathParam("id") Long id) {
+    public Response delete(@PathParam("id") Long id) {
         employeeService.deleteById(id);
+        return Response.noContent().build();
     }
 
     @GET
