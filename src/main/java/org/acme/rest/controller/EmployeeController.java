@@ -34,7 +34,7 @@ public class EmployeeController {
     @Produces("application/json")
     public Response addEmployee(Employee employee){
         employeeService.addEmployee(employee);
-        return Response.ok().build();
+        return Response.status(201).build();
     }
 
     @GET
