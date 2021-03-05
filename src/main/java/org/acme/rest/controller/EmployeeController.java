@@ -34,7 +34,7 @@ public class EmployeeController {
     @Produces("application/json")
     public Response addEmployee(Employee employee){
         employeeService.addEmployee(employee);
-        return Response.ok().build();
+        return Response.status(201).build();
     }
 
     @GET
@@ -46,9 +46,11 @@ public class EmployeeController {
 
     @Transactional
     @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
-    public void delete(@PathParam("id") Long id) {
+    public Response delete(@PathParam("id") Long id) {
         employeeService.deleteById(id);
+        return Response.noContent().build();
     }
 
     @GET
@@ -61,6 +63,14 @@ public class EmployeeController {
     @Path("/jobtitle/{jobtitle}")
     public List<Employee> findByJobTitle(@PathParam("jobtitle") @Encoded String jobtitle) {
         return employeeService.findByJobTitle(jobtitle);
+    }
+
+    @Transactional
+    @PUT
+    @Path("/{id}")
+    @Produces("application/json")
+    public Employee updateEmployeeEmail(@PathParam("id") Long id, Employee employee){
+        return employeeService.updateEmployee(employee);
     }
 
 }
