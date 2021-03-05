@@ -1,8 +1,8 @@
 package org.acme.rest.entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import javax.persistence.*;
-import static javax.persistence.GenerationType.SEQUENCE;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name= "employees", schema = "public")
@@ -24,7 +24,8 @@ public class Employee extends PanacheEntityBase {
     public String email;
     
     @Column(name = "dateofbirth")
-    public Date dateOfBirth;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    public LocalDate dateOfBirth;
 
     @Column(name = "jobtitle")
     public String jobTitle;
@@ -32,7 +33,7 @@ public class Employee extends PanacheEntityBase {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, Date dateOfBirth) {
+    public Employee(String firstName, String lastName, String email, LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

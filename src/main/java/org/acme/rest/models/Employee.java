@@ -1,19 +1,18 @@
 package org.acme.rest.models;
-
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Employee {
 
     private String firstName;
     private String lastName;
     private String email;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String jobTitle;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, Date dateOfBirth, String jobTitle) {
+    public Employee(String firstName, String lastName, String email, LocalDate dateOfBirth, String jobTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -42,10 +41,10 @@ public class Employee {
         this.email = email;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
