@@ -33,15 +33,19 @@ public class Employee extends PanacheEntityBase {
     @Column(name = "status")
     public Boolean status;
 
+    @Column(name = "department")
+    public String department;
+
     public Employee() {
     }
 
-    public Employee(Long id, String firstName, String lastName, String email, LocalDate dateOfBirth, Boolean status) {
+    public Employee(Long id, String firstName, String lastName, String email, LocalDate dateOfBirth, Boolean status, String department) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.status = status;
+        this.department = department;
     }
 }
