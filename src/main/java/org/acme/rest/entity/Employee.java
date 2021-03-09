@@ -12,7 +12,7 @@ public class Employee extends PanacheEntityBase {
     @GeneratedValue(generator = "id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="id_seq", sequenceName = "public.employees_Id_seq", allocationSize = 1, schema = "public")
     @Column(name="id", updatable = false, nullable = false)
-    private Long id;
+    public Long id;
 
     @Column(name = "firstname")
     public String firstName;
@@ -33,7 +33,8 @@ public class Employee extends PanacheEntityBase {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, LocalDate dateOfBirth) {
+    public Employee(Long id, String firstName, String lastName, String email, LocalDate dateOfBirth) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
