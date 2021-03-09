@@ -23,12 +23,12 @@ You can run your application in dev mode that enables live coding using:
 
 
 @GET
-#### `/employees`
+#### `/employees/page/{limit}/{pageIndex}`
 
 Lists all employees from Employees table. `application/json`
 
 ```shell script
-curl -X -GET http://localhost:8080/employees
+curl -X -GET http://localhost:8080/employees/page/{limit}/{pageIndex}
 ```
 
 
