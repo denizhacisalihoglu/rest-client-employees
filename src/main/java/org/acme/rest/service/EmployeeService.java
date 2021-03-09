@@ -18,7 +18,7 @@ public class EmployeeService {
     EmployeeRepository employeeRepository;
 
     public PanacheQuery<Employee> getEmployee(int limit, int pageIndex){
-        return employeeRepository.findAll().page(pageIndex, limit);
+        return employeeRepository.findAll(Sort.by("id")).page(pageIndex, limit);
     }
 
     public long getCount(){
