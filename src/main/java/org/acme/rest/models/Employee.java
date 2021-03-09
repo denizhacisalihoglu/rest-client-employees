@@ -9,17 +9,19 @@ public class Employee {
     private String email;
     private LocalDate dateOfBirth;
     private String jobTitle;
+    private Boolean status;
 
     public Employee() {
     }
 
-    public Employee(Long id, String firstName, String lastName, String email, LocalDate dateOfBirth, String jobTitle) {
+    public Employee(Long id, String firstName, String lastName, String email, LocalDate dateOfBirth, String jobTitle, Boolean status) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.jobTitle = jobTitle;
+        this.status = status;
     }
 
     public Long getId() {
@@ -60,4 +62,10 @@ public class Employee {
     public String getJobTitle() { return jobTitle; }
     public void setJobTitle(String jobTitle) { this.jobTitle =  jobTitle; }
 
+    public Boolean status() {
+        return status;
+    }
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }
