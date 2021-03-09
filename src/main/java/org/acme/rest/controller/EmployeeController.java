@@ -1,8 +1,10 @@
 
 package org.acme.rest.controller;
 
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.acme.rest.entity.Employee;
 import org.acme.rest.service.EmployeeService;
+import org.acme.rest.models.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -24,10 +26,15 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @GET
+    @Path("/page/{limit}/{pageIndex}")
     @Produces("application/json")
-    public Response getEmployee(){
-        List<Employee> prod = employeeService.getEmployee();
-        return Response.ok(prod).build();
+    public Response getEmployee(@PathParam("limit") int limit, @PathParam("pageIndex") int pageIndex){
+        PanacheQuery<Employee> allEmployees = employeeService.getEmployee(limit, pageIndex - 1);
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.data = allEmployees.list();
+        employeeResponse.count = employeeService.getCount();
+
+        return Response.ok(employeeResponse).build();
     }
 
     @POST
