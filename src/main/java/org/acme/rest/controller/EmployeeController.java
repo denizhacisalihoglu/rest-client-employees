@@ -61,6 +61,17 @@ public class EmployeeController {
         return Response.noContent().build();
     }
 
+    @Transactional
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response delete(@QueryParam("ids") String ids) {
+        String[] split = ids.split(",");
+        for (String id : split) {
+            employeeService.deleteById(Long.parseLong(id));
+        }
+        return Response.noContent().build();
+    }
+
     @GET
     @Path("/email/{email}")
     public Employee get(@PathParam("email") @Encoded String email) {
