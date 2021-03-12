@@ -30,4 +30,9 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
         return find("jobtitle", jobTitle).list();
     }
 
+    public List<Employee> findByDepartment(String department) {
+        return find("department", department).list();
+    }
+
+
 }

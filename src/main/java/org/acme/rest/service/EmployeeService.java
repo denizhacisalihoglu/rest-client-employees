@@ -21,6 +21,10 @@ public class EmployeeService {
         return employeeRepository.findAll(Sort.by((orderBy == null) ? "id" : orderBy)).page(pageIndex, limit);
     }
 
+    public PanacheQuery<Employee> getByDepartment(int limit, int pageIndex, String department){
+        return employeeRepository.find("department", department).page(pageIndex, limit);
+    }
+
     public long getCount(){
         return employeeRepository.findAll().count();
     }

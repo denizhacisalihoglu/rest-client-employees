@@ -84,6 +84,21 @@ public class EmployeeController {
         return employeeService.findByJobTitle(jobtitle);
     }
 
+    @GET
+    @Produces("application/json")
+    @Path("/department/{limit}/{page}/{department}")
+    public Response getByDepartment(
+            @PathParam("limit") int limit,
+            @PathParam("page") int page,
+            @PathParam("department") String department) {
+        PanacheQuery<Employee> allEmployees = employeeService.getByDepartment(limit, page - 1, department);
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.data = allEmployees.list();
+        employeeResponse.count = (long) allEmployees.list().size();
+
+        return Response.ok(employeeResponse).build();
+    }
+
     @Transactional
     @PUT
     @Path("/{id}")
