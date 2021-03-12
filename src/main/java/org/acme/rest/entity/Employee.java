@@ -10,7 +10,7 @@ public class Employee extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(generator = "id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="id_seq", sequenceName = "public.employees_Id_seq", allocationSize = 1, schema = "public")
+    @SequenceGenerator(name="id_seq", sequenceName = "public.employees_id_seq", allocationSize = 1, schema = "public")
     @Column(name="id", updatable = false, nullable = false)
     public Long id;
 
