@@ -1,8 +1,10 @@
 
 package org.acme.rest.controller;
 
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.acme.rest.entity.Employee;
 import org.acme.rest.service.EmployeeService;
+import org.acme.rest.models.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -25,9 +27,15 @@ public class EmployeeController {
 
     @GET
     @Produces("application/json")
-    public Response getEmployee(){
-        List<Employee> prod = employeeService.getEmployee();
-        return Response.ok(prod).build();
+    public Response getEmployee(@QueryParam("limit") int limit,
+                                @QueryParam("page") int page,
+                                @QueryParam("orderBy") String orderBy) {
+        PanacheQuery<Employee> allEmployees = employeeService.getEmployee(limit, page - 1, orderBy);
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.data = allEmployees.list();
+        employeeResponse.count = employeeService.getCount();
+
+        return Response.ok(employeeResponse).build();
     }
 
     @POST
@@ -53,6 +61,17 @@ public class EmployeeController {
         return Response.noContent().build();
     }
 
+    @Transactional
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response delete(@QueryParam("ids") String ids) {
+        String[] split = ids.split(",");
+        for (String id : split) {
+            employeeService.deleteById(Long.parseLong(id));
+        }
+        return Response.noContent().build();
+    }
+
     @GET
     @Path("/email/{email}")
     public Employee get(@PathParam("email") @Encoded String email) {
@@ -63,6 +82,21 @@ public class EmployeeController {
     @Path("/jobtitle/{jobtitle}")
     public List<Employee> findByJobTitle(@PathParam("jobtitle") @Encoded String jobtitle) {
         return employeeService.findByJobTitle(jobtitle);
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/department/{limit}/{page}/{department}")
+    public Response getByDepartment(
+            @PathParam("limit") int limit,
+            @PathParam("page") int page,
+            @PathParam("department") String department) {
+        PanacheQuery<Employee> allEmployees = employeeService.getByDepartment(limit, page - 1, department);
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.data = allEmployees.list();
+        employeeResponse.count = (long) allEmployees.list().size();
+
+        return Response.ok(employeeResponse).build();
     }
 
     @Transactional

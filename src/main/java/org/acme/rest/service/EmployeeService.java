@@ -1,4 +1,5 @@
 package org.acme.rest.service;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Sort;
 import org.acme.rest.repository.EmployeeRepository;
 import org.acme.rest.entity.Employee;
@@ -16,8 +17,16 @@ public class EmployeeService {
     @Inject
     EmployeeRepository employeeRepository;
 
-    public List<Employee> getEmployee(){
-        return employeeRepository.listAll(Sort.by("firstName"));
+    public PanacheQuery<Employee> getEmployee(int limit, int pageIndex, String orderBy){
+        return employeeRepository.findAll(Sort.by((orderBy == null) ? "id" : orderBy)).page(pageIndex, limit);
+    }
+
+    public PanacheQuery<Employee> getByDepartment(int limit, int pageIndex, String department){
+        return employeeRepository.find("department", department).page(pageIndex, limit);
+    }
+
+    public long getCount(){
+        return employeeRepository.findAll().count();
     }
 
     @Transactional
