@@ -23,14 +23,32 @@ You can run your application in dev mode that enables live coding using:
 
 
 @GET
-#### `/employees/page/{limit}/{pageIndex}`
+#### `/employees?page={id}&limit={limit}&sortBy={id}`
 
 Lists all employees from Employees table. `application/json`
 
+
+**page:** activepage\
+**limit:** rows per page\
+**sortBy:** sort data depending on provided column, default: id\
+
 ```shell script
-curl -X -GET http://localhost:8080/employees/page/{limit}/{pageIndex}
+curl -X -GET http://localhost:8080/employees?page={id}&limit={limit}&sortBy={id}
 ```
 
+
+@GET
+#### `/employees/department/{limit}/{page}/{department}`
+
+Lists all employees in a specific department from Employees table. `application/json`
+
+**page:** activepage\
+**limit:** rows per page\
+**department:** department name
+
+```shell script
+curl -X -GET http://localhost:8080/employees/department/{limit}/{page}/{department}
+```
 
 @GET
 #### `/employees/{id}`
@@ -65,10 +83,20 @@ curl -X -GET http://localhost:8080/employees/jobtitle/{jobtitle}
 @DELETE
 #### `/employees/{id}`
 
-Deletes employee detail by id.
+Deletes employee by id.
 
 ```shell script
 curl -X -DELETE http://localhost:8080/employees/{id}
+```
+
+
+@DELETE
+#### `/employees&ids={ids as String divided by ","}`
+
+Deletes multiple employees by ids at once.
+
+```shell script
+curl -X -DELETE http://localhost:8080/employees?ids=77,78,79
 ```
 
 
@@ -79,7 +107,7 @@ Creates new employee.
 
 ```shell script
 curl -X POST -H "Content-Type: application/json" \
-    -d '{"firstName": "John", "lastName": "Doe", "email": "john@example.com", "dateOfBirth": "10/10/1988", "jobTitle": "Front End Developer"}' \
+    -d '{"firstName": "John", "lastName": "Doe", "email": "john@example.com", status: 1, "dateOfBirth": "10/10/1988", "jobTitle": "Front End Developer", "department": "Finance"}' \
     http://localhost:8080/employees
 ```
 
