@@ -14,6 +14,9 @@ public class EmployeeControllerTest {
     @Test
     public void getEmployeeEndpoint() {
         given()
+                .param("page", "1")
+                .param("limit", "10")
+                .param("sortBy", "id")
                 .when().get("/employees")
                 .then()
                 .statusCode(200)
