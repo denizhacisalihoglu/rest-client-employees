@@ -17,8 +17,26 @@ public class EmployeeService {
     @Inject
     EmployeeRepository employeeRepository;
 
-    public PanacheQuery<Employee> getEmployee(int limit, int pageIndex, String orderBy){
-        return employeeRepository.findAll(Sort.by((orderBy == null) ? "id" : orderBy)).page(pageIndex, limit);
+    public PanacheQuery<Employee> getEmployee(int limit, int pageIndex,
+                                              String orderBy,
+                                              String sortBy,
+                                              String filterByDepartment){
+        String query = "";
+
+        if (filterByDepartment != null && !filterByDepartment.isEmpty()) {
+            query += "department like '%" + filterByDepartment + "%'";
+        }
+
+        if (orderBy != null && !orderBy.isEmpty()) {
+            query += " order by " + orderBy;
+
+            if (sortBy != null && !sortBy.isEmpty()) {
+                query += " " + sortBy;
+            }
+        }
+
+        return employeeRepository.find(query)
+                .page(pageIndex, limit);
     }
 
     public PanacheQuery<Employee> getByDepartment(int limit, int pageIndex, String department){
