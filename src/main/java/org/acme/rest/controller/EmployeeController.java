@@ -29,8 +29,10 @@ public class EmployeeController {
     @Produces("application/json")
     public Response getEmployee(@QueryParam("limit") int limit,
                                 @QueryParam("page") int page,
-                                @QueryParam("orderBy") String orderBy) {
-        PanacheQuery<Employee> allEmployees = employeeService.getEmployee(limit, page - 1, orderBy);
+                                @QueryParam("orderBy") String orderBy,
+                                @QueryParam("sortBy") String sortBy,
+                                @QueryParam("filterByDepartment") String filterByDepartment) {
+        PanacheQuery<Employee> allEmployees = employeeService.getEmployee(limit, page - 1, orderBy, sortBy, filterByDepartment);
         EmployeeResponse employeeResponse = new EmployeeResponse();
         employeeResponse.data = allEmployees.list();
         employeeResponse.count = employeeService.getCount();

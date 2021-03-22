@@ -23,14 +23,18 @@ You can run your application in dev mode that enables live coding using:
 
 
 @GET
-#### `/employees?page={id}&limit={limit}&sortBy={id}`
+#### `/employees?page={id}&limit={limit}&orderBy={columnName}&sortBy={asc|desc}&filterByDepartment={department}`
+
+
 
 Lists all employees from Employees table. `application/json`
 
 
 **page:** activepage\
 **limit:** rows per page\
-**sortBy:** sort data depending on provided column, default: id\
+**orderBy:** order data by provided columnname, default: id\
+**sortBy:** sort data by ascending or descending default: asc\
+**filterByDepartment:** filter data by provided department name\
 
 ```shell script
 curl -X -GET http://localhost:8080/employees?page={id}&limit={limit}&sortBy={id}
