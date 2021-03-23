@@ -35,7 +35,7 @@ public class EmployeeController {
         PanacheQuery<Employee> allEmployees = employeeService.getEmployee(limit, page - 1, orderBy, sortBy, filterByDepartment);
         EmployeeResponse employeeResponse = new EmployeeResponse();
         employeeResponse.data = allEmployees.list();
-        employeeResponse.count = employeeService.getCount();
+        employeeResponse.count = allEmployees.count();
 
         return Response.ok(employeeResponse).build();
     }

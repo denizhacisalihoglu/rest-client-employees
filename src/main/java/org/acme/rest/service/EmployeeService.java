@@ -43,10 +43,6 @@ public class EmployeeService {
         return employeeRepository.find("department", department).page(pageIndex, limit);
     }
 
-    public long getCount(){
-        return employeeRepository.findAll().count();
-    }
-
     @Transactional
     public void addEmployee(Employee employee){
         employeeRepository.persist(employee);
