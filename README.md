@@ -4,6 +4,8 @@ This project is an API gives Employee information hosted at Heroku, and using MO
 
 API is using Quarkus framework.
 
+**Dev Note:** Please note that this is a learner project may not have best practices but aim to help you to figure out some issues.
+
 ## Technical Specs
 
 Database: heroku.com / Postgres
@@ -11,6 +13,15 @@ Database: heroku.com / Postgres
 Data: Mock data from https://www.mockaroo.com/
 
 Entity: Panache
+
+## Database
+
+This project uses Heroku Database. After creating a heroku account and database you can import the following heroku database to run this project.
+Load the dump into your local database using the pg_restore tool. If objects exist in a local copy of the database already, you might run into inconsistencies when doing a pg_restore. Please, visit this [link](https://devcenter.heroku.com/articles/heroku-postgres-import-export#restore-to-local-database) for further help.
+
+```shell script
+$ pg_restore --verbose --clean --no-acl --no-owner -h localhost -U myuser -d mydb latest.dump
+```
 
 ## Running the application in dev mode
 
