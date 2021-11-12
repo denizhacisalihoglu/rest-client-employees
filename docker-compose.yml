@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  scrabble-postgresql:
+    image: postgres:alpine
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRES_DB: employees
+      POSTGRES_USER: employees
+      POSTGRES_PASSWORD: employees
